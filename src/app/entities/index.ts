@@ -1,2 +1,2 @@
 export { User } from './user.entity';
-export { Todo } from './todo.entity';
+export { Course } from './course.entity';
