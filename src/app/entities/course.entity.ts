@@ -11,9 +11,6 @@ export class Course extends BaseEntity {
   name: string
 
   @Column()
-  teacher: string
-
-  @Column()
   startTime?: number
 
   @Column()

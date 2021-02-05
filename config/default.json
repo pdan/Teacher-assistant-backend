@@ -3,7 +3,11 @@
     "loggerFormat": "tiny",
     "session": {
       "store": "@foal/typeorm"
-    }
+    },
+    "jwt": {
+      "secret": "U3EB7AT4YZsPEl9ZL1uaEpRQDqMidxAl4JWZ8DktrGM=",
+      "secretEncoding": "base64" 
+    }    
   },
   "database": {
     "type": "sqlite",

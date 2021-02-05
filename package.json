@@ -25,7 +25,10 @@
   },
   "dependencies": {
     "@foal/core": "^2.0.0",
+    "@foal/jwt": "^2.0.0",
+    "@foal/password": "^2.1.2",
     "@foal/typeorm": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
     "source-map-support": "~0.5.19",
     "sqlite3": "~5.0.0",
     "typeorm": "0.2.24"

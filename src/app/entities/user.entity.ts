@@ -1,6 +1,7 @@
 import { hashPassword } from '@foal/core';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToMany, OneToOne, JoinTable } from 'typeorm';
 import { Course } from './course.entity'
+import { UserProfile } from './user-profile.entity'
 
 @Entity()
 export class User extends BaseEntity {
@@ -8,30 +9,27 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  email: string;
-
   @Column()
   password: string;
 
-  @Column()
-  name?: string;
+  @Column({ unique: true })
+  phone: string
 
-  @Column()
-  family?: string
+  @ManyToMany(() => Course)
+  @JoinTable()
+  courses: Course[]
 
-  @Column()
-  birthDate?: number
-
-  @Column()
-  phone?: string
-
-  @ManyToOne(type => Course)
-  courses: Course
-
+  @OneToOne(type => UserProfile)
+  userProfile?: UserProfile
 
   async setPassword(password: string) {
     this.password = await hashPassword(password);
   }
 
 }
+
+// Exporting this line is required
+// when using session tokens with TypeORM.
+// It will be used by `npm run makemigrations`
+// to generate the SQL session table.
+export { DatabaseSession } from '@foal/typeorm';
