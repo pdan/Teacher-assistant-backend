@@ -44,3 +44,5 @@ export class UserProfile extends BaseEntity {
   city: string
 
 }
+
+export { DatabaseSession } from '@foal/typeorm';

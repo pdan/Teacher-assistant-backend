@@ -28,9 +28,11 @@ export class AuthCotroller {
         }
 
         const token = sign(
-            { phone: user.phone },
+            { 
+                id: user.id 
+            },
             getSecretOrPrivateKey(),
-            { expiresIn: '1h' }
+            { expiresIn: '24h' }
         );
 
         return new HttpResponseOK({ token })
@@ -49,7 +51,7 @@ export class AuthCotroller {
         type: 'object'
     })
     async signup(ctx: Context) {
-
+        
         if (await isCommon(ctx.request.body.password)) {
             return new HttpResponseConflict('Password is too simple.')
         }

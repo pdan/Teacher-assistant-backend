@@ -1,5 +1,5 @@
 import { hashPassword } from '@foal/core';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToMany, OneToOne, JoinTable } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToMany, OneToOne, JoinTable, JoinColumn } from 'typeorm';
 import { Course } from './course.entity'
 import { UserProfile } from './user-profile.entity'
 
@@ -19,8 +19,9 @@ export class User extends BaseEntity {
   @JoinTable()
   courses: Course[]
 
-  @OneToOne(type => UserProfile)
-  userProfile?: UserProfile
+  @OneToOne(() => UserProfile, { cascade: true })
+  @JoinColumn()
+  userProfile: UserProfile
 
   async setPassword(password: string) {
     this.password = await hashPassword(password);
