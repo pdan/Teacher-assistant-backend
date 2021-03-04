@@ -29,7 +29,8 @@ export class AuthCotroller {
 
         const token = sign(
             { 
-                id: user.id 
+                id: user.id,
+                role: user.role
             },
             getSecretOrPrivateKey(),
             { expiresIn: '24h' }
@@ -63,21 +64,12 @@ export class AuthCotroller {
         }
 
         user = new User();
+        user.role = 'student';
         user.phone = ctx.request.body.phone;
         await user.setPassword(ctx.request.body.password);
         await user.save()
 
-        // if (!await verifyPassword(ctx.request.body.password, user.password)) {
-        //   return new HttpResponseUnauthorized();
-        // }
-
-        // const token = sign(
-        //   { phone: user.phone },
-        //   getSecretOrPrivateKey(),
-        //   { expiresIn: '1h' }
-        // );
-
-        return new HttpResponseOK({ pass: ctx.request.body.password, user: ctx.request.body.phone })
+        return new HttpResponseOK()
     }
 
 }

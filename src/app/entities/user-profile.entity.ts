@@ -17,7 +17,7 @@ export class UserProfile extends BaseEntity {
   email: string
 
   @Column()
-  birthDate: number
+  birthdate: number
 
   @Column()
   sex: string;

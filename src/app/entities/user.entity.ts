@@ -15,6 +15,9 @@ export class User extends BaseEntity {
   @Column({ unique: true })
   phone: string
 
+  @Column()
+  role: string
+
   @ManyToMany(() => Course)
   @JoinTable()
   courses: Course[]
