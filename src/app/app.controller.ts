@@ -1,4 +1,4 @@
-import { controller, IAppController } from '@foal/core';
+import { controller, IAppController, Get, render } from '@foal/core';
 import { createConnection } from 'typeorm';
 
 import { ApiController, AuthCotroller } from './controllers';
@@ -11,5 +11,10 @@ export class AppController implements IAppController {
 
   async init() {
     await createConnection();
+  }
+
+  @Get('/')
+  index() {
+    return render('templates/index.html');
   }
 }

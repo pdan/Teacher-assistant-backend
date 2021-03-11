@@ -46,7 +46,10 @@ export class ApiController {
     if (!users)
       return new HttpResponseNotFound();
 
-    return new HttpResponseOK(users)
+    return new HttpResponseOK(users.map(user => {
+      user.password = '';
+      return user
+    }))
   }
 
   @Post('/save/my/user/as/admin')
